@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  attu:
+    container_name: attu
+    image: zilliz/attu:latest
+    environment:
+      MILVUS_URL: host.docker.internal:19530
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    depends_on:
+      - attu-proxy
+
+  # Nginx proxy to handle CORS and routing
+  attu-proxy:
+    container_name: attu-proxy
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx-attu.conf:/etc/nginx/conf.d/default.conf:ro
+    restart: unless-stopped
+
+networks:
+  default:
+    external: true
+    name: bridge
