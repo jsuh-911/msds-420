@@ -16,3 +16,16 @@ __pycache__/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Virtual environment
+venv/
+
+# Large data files
+Final_Assignment_1/*.json
+Final_Assignment_1/*.csv
+Assignment_7/volumes/
+
+# Database files
+*.sst
+*.wal
+*.log
